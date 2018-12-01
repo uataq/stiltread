@@ -62,7 +62,7 @@ read_met <- function(path, var) {
                   rdata = array(0, dim = c(nx, ny)))
 
   # Use WRF python module to calculate ll of grid positions
-  wrf <- import('wrf')
+  wrf <- reticulate::import('wrf', delay_load = T)
   latlon <- wrf$xy_to_ll_proj(
     x=c(1, nx),
     y=c(1, ny),
