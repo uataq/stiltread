@@ -6,6 +6,6 @@
 #' @import reticulate
 #' @export
 
-install_dependencies <- function(...) {
+install_stiltread <- function(...) {
   reticulate::py_install('wrf-python')
 }

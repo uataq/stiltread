@@ -15,7 +15,7 @@ Then, load the package and install the dependencies.
 
 ```r
 library(stiltread)
-install_dependencies()
+install_stiltread()
 ```
 
 To read a raster layer from a HRRR data file,
