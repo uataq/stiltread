@@ -17,3 +17,11 @@ Then, load the package and install the dependencies.
 library(stiltread)
 install_dependencies()
 ```
+
+To read a layer from a HRRR data file,
+
+```r
+library(stiltread)
+shgt <- read_met('/path/to/arl/file.hrrra', 'shgt')
+plot(shgt, main = 'Elevation')
+```
