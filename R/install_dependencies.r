@@ -7,5 +7,5 @@
 #' @export
 
 install_dependencies <- function(...) {
-  py_install('wrf-python')
+  reticulate::py_install('wrf-python')
 }
