@@ -6,3 +6,6 @@
 
 *.o
 *.so
+
+*.hrrra
+dev.r

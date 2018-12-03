@@ -45,7 +45,7 @@ subroutine fetch_grid(path, var, nx, ny, rdata)
 end subroutine fetch_grid
 
 
-! original source:
+! original source: HYSPLIT v4.9
 SUBROUTINE UNPACK(CPACK,RDATA,NX,NY,NEXP,VAR1)
 
 CHARACTER(1),INTENT(IN)       :: CPACK(:)

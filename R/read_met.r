@@ -63,7 +63,7 @@ read_met <- function(path, var) {
     y=c(1, ny),
     squeeze=T,
     meta=F,
-    map_proj=1, # LCC
+    map_proj=as.integer(substring(header, 7, 7)),
     truelat1=proj_vals$ref_lat,
     truelat2=proj_vals$ref_lat,
     stand_lon=proj_vals$ref_lon,

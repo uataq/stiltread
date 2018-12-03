@@ -60,3 +60,12 @@ leaflet() %>%
 <p align="center">
   <img src="man/figures/shgt-example-leaflet.png" width=500 />
 </p>
+
+
+## To-do
+
+These tools are still a work in progress. The following points still need to be completed -
+
+1. Extract explicit timestep from hourly resolved files
+1. Extract explicit vertical level for vertically resolved variables
+1. Flag to reproject output raster to `+proj=longlat` with appropriate wind rotation and scaling
