@@ -11,15 +11,10 @@
 #'
 #' @useDynLib stiltread
 #'
-#' @import reticulate
+#' @import glue raster reticulate rgdal
 #' @export
 
 read_met <- function(path, var) {
-
-  require(glue)
-  require(raster)
-  require(reticulate)
-  require(rgdal)
 
   if (!file.exists(path)) stop('File does not exist')
   var <- toupper(var)
