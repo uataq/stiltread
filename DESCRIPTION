@@ -1,12 +1,15 @@
 Package: stiltread
 Title: STILT model file interfacing routines
-Version: 0.0.0.9000
+Version: 0.1
 Authors@R: person("Ben", "Fasoli", email = "benfasoli@gmail.com", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
-Depends: R (>= 3.4.0)
+Depends: R (>= 3.2.5)
 License: MIT
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.0
 Imports:
-  reticulate
+  glue,
+  raster,
+  reticulate,
+  rgdal

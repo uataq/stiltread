@@ -2,8 +2,5 @@
 
 export(install_stiltread)
 export(read_met)
-import(glue)
-import(raster)
-import(reticulate)
-import(rgdal)
+export(read_met_header)
 useDynLib(stiltread)
