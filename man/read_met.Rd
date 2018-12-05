@@ -4,7 +4,7 @@
 \alias{read_met}
 \title{Read ARL packed meteorological data file layer}
 \usage{
-read_met(path, var)
+read_met(path, var, yy, mm, dd, hh, lvl)
 }
 \arguments{
 \item{path}{to ARL packed file}
@@ -12,6 +12,16 @@ read_met(path, var)
 \item{var}{four digit character code of variable. Examples include SHGT PRSS
 MSLP TPP1 DIFR T02M DP2M PBLH DSWF ULWF U10M V10M VSBY CSNO CICE CFZR CRAI
 LIB4 CAPE CINH TCLD REFC CLDB CLDT}
+
+\item{yy}{desired record year}
+
+\item{mm}{desired record month of year}
+
+\item{dd}{desired record day of month}
+
+\item{hh}{desired record hour of day}
+
+\item{lvl}{desired record vertical level (0:nz)}
 }
 \description{
 Read ARL packed meteorological data file layer

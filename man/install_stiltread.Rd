@@ -4,7 +4,7 @@
 \alias{install_stiltread}
 \title{Install stiltread dependencies}
 \usage{
-install_stiltread(...)
+install_stiltread()
 }
 \description{
 Install stiltread dependencies
