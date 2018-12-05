@@ -22,7 +22,13 @@ To read a raster layer from a HRRR data file,
 
 ```r
 library(stiltread)
-shgt <- read_met('/path/to/arl/file.hrrra', 'shgt')
+shgt <- read_met('/path/to/arl/20150617.00z.hrrra', 
+                 var = 'shgt',
+                 yy = 15,
+                 mm = 6,
+                 dd = 17,
+                 hh = 3,
+                 lvl = 0)
 shgt
 # class       : RasterLayer 
 # dimensions  : 1059, 1799, 1905141  (nrow, ncol, ncell)
@@ -66,6 +72,6 @@ leaflet() %>%
 
 These tools are still a work in progress. The following points still need to be completed -
 
-1. Extract explicit timestep from hourly resolved files
-1. Extract explicit vertical level for vertically resolved variables
+1. ~Extract explicit timestep from hourly resolved files~
+1. ~Extract explicit vertical level for vertically resolved variables~
 1. Flag to reproject output raster to `+proj=longlat` with appropriate wind rotation and scaling
