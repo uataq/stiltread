@@ -4,7 +4,7 @@
 \alias{read_met}
 \title{Read ARL packed meteorological data file layer}
 \usage{
-read_met(path, var, yy, mm, dd, hh, lvl)
+read_met(path, var, yy, mm, dd, hh, lvl, wnd_warning = T)
 }
 \arguments{
 \item{path}{to ARL packed file}
@@ -22,6 +22,11 @@ LIB4 CAPE CINH TCLD REFC CLDB CLDT}
 \item{hh}{desired record hour of day}
 
 \item{lvl}{desired record vertical level (0:nz)}
+
+\item{wnd_warning}{report grid orientation warning when querying wind data}
+}
+\value{
+rasterLayer with associated projection metadata
 }
 \description{
 Read ARL packed meteorological data file layer
@@ -29,6 +34,5 @@ Read ARL packed meteorological data file layer
 \author{
 Ben Fasoli
 
-Extracts the given variable from file and returns a raster with associated
-projection metadata
+Extracts the given variable from file
 }

@@ -1,6 +1,7 @@
 # stiltread R package
 
-This package provides tools for interfacing with input and output files used by the [Stochastic Time Inverted Lagrangian Transport (STILT)](http://uataq.github.io/stilt) model.
+This package provides tools for interfacing with input and output files used by the [Stochastic Time Inverted Lagrangian Transport (STILT)](http://uataq.github.io/stilt) model. 
+
 
 ## Installation
 
@@ -43,6 +44,44 @@ shgt
 which returns a `raster::RasterLayer` containing data, grid coordinates, and projection information using the standard [PROJ4](https://proj4.org/) format.
 
 
+## Wind transformations
+
+Since wind is grid relative, use `read_met_wind` instead of `read_met` to access wind fields. This is called in the same way as `read_met`, only no `var` argument is required. This returns a `rasterStack` with `u` and `v` layers that have been rotated into `+proj=longlat`.
+
+```{r}
+library(stiltread)
+uv <- read_met_wind('/path/to/arl/20150617.00z.hrrra', 
+                    yy = 15,
+                    mm = 6,
+                    dd = 17,
+                    hh = 3,
+                    lvl = 0)
+uv
+# class       : RasterStack 
+# dimensions  : 72, 78, 5616, 2  (nrow, ncol, ncell, nlayers)
+# resolution  : 0.0345, 0.0261  (x, y)
+# extent      : -113.4537, -110.7627, 39.81678, 41.69598  (xmin, xmax, ymin, ymax)
+# coord. ref. : +proj=longlat +ellps=WGS84 
+# names       :          u,          v 
+# min values  :  -6.965451, -10.460653 
+# max values  :   5.198425,   5.289214
+```
+
+The `u` and `v` layers can be accessed by name using
+
+```{r}
+uv$u
+# class       : RasterLayer 
+# dimensions  : 72, 78, 5616  (nrow, ncol, ncell)
+# resolution  : 0.0345, 0.0261  (x, y)
+# extent      : -113.4537, -110.7627, 39.81678, 41.69598  (xmin, xmax, ymin, ymax)
+# coord. ref. : +proj=longlat +ellps=WGS84 
+# data source : in memory
+# names       : u 
+# values      : -6.965451, 5.198425  (min, max)
+```
+
+
 ## Visualizations
 
 Since `read_met` returns a `raster::RasterLayer` with projection metadata, we can leverage standard mapping libraries in R.
@@ -68,10 +107,7 @@ leaflet() %>%
 </p>
 
 
-## To-do
+## Limitations
 
-These tools are still a work in progress. The following points still need to be completed -
-
-1. ~Extract explicit timestep from hourly resolved files~
-1. ~Extract explicit vertical level for vertically resolved variables~
-1. Flag to reproject output raster to `+proj=longlat` with appropriate wind rotation and scaling
+1. Returned raster layers are limited to files that use Lambert Conformal Conic for the map projection, which is typical for midlatitudes.
+1. Upper levels of pressure variables are often recorded as a difference from the base level. This calculation needs to be performed by the user.

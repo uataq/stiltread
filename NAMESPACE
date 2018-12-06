@@ -3,4 +3,5 @@
 export(install_stiltread)
 export(read_met)
 export(read_met_header)
+export(read_met_wind)
 useDynLib(stiltread)

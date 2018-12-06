@@ -1,8 +1,7 @@
 #' Read ARL packed meteorological data file layer
 #' @author Ben Fasoli
 #'
-#' Extracts the given variable from file and returns a raster with associated
-#' projection metadata
+#' Extracts the given variable from file
 #'
 #' @param path to ARL packed file
 #' @param var four digit character code of variable. Examples include SHGT PRSS
@@ -13,15 +12,24 @@
 #' @param dd desired record day of month
 #' @param hh desired record hour of day
 #' @param lvl desired record vertical level (0:nz)
+#' @param wnd_warning report grid orientation warning when querying wind data
+#'
+#' @return rasterLayer with associated projection metadata
 #'
 #' @useDynLib stiltread
 #'
 #' @export
 
-read_met <- function(path, var, yy, mm, dd, hh, lvl) {
+read_met <- function(path, var, yy, mm, dd, hh, lvl, wnd_warning = T) {
 
   if (!file.exists(path)) stop('File does not exist')
   var <- toupper(var)
+
+  if (wnd_warning && var %in% c('UWND', 'VWND', 'U10M', 'V10M')) {
+    warning(var, ' returned relative to native grid. See read_met_wind for ',
+            'U and V wind relative to North and East respectively or set ',
+            'wnd_warning = F to suppress this message.')
+  }
 
   meta <- stiltread::read_met_header(path)
 
