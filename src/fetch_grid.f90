@@ -46,6 +46,7 @@ subroutine fetch_grid(path, var, nx, ny, yy, mm, dd, hh, lvl, verbose, rdata)
 
         if (verbose .ne. 0) then
             write(*,*) '__________________________________'
+            write(*,*) 'i:        ', i
             write(*,*) 'Label:    ', label
             write(*,*) 'Variable: ', kvar
             write(*,*) 'Year:     ', iy
