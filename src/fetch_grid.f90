@@ -1,7 +1,7 @@
 ! Read grid from ARL packed data file
 ! Ben Fasoli
 
-subroutine fetch_grid(path, var, nx, ny, yy, mm, dd, hh, lvl, rdata)
+subroutine fetch_grid(path, var, nx, ny, yy, mm, dd, hh, lvl, verbose, rdata)
 
     ! Argument descriptions
     character(160),    intent(in)  :: path  ! path to data file
@@ -13,6 +13,7 @@ subroutine fetch_grid(path, var, nx, ny, yy, mm, dd, hh, lvl, rdata)
     integer,           intent(in)  :: dd  ! desired record day of month
     integer,           intent(in)  :: hh  ! desired record hour of day
     integer,           intent(in)  :: lvl  ! desired vertical level (1 to nz)
+    integer,           intent(in)  :: verbose  ! boolean to print record data
     double precision,  intent(out) :: rdata(nx,ny)  ! container for output data
 
     character(1)                   :: cpack(nx*ny)  ! container for packed data
@@ -42,12 +43,29 @@ subroutine fetch_grid(path, var, nx, ny, yy, mm, dd, hh, lvl, rdata)
     do i = 1, 99999
         read(10, rec=i, iostat=ios) label, (cpack(K), K=1, nxy)
         read(label, '(6I2,2X,A4,I4,2E14.7)') iy,im,id,ih,ic,il,kvar,nexp,prec,var1
-        if ((kvar .eq. var) &
-            .and. (iy .eq. yy) &
-            .and. (im .eq. mm) &
-            .and. (id .eq. dd) &
-            .and. (ih .eq. hh) &
-            .and. (il .eq. lvl)) exit
+
+        if (verbose .ne. 0) then
+            write(*,*) '__________________________________'
+            write(*,*) 'Label:    ', label
+            write(*,*) 'Variable: ', kvar
+            write(*,*) 'Year:     ', iy
+            write(*,*) 'Month:    ', im
+            write(*,*) 'Day:      ', id
+            write(*,*) 'Hour:     ', ih
+            write(*,*) 'Level:    ', il
+            write(*,*) 'iostat:   ', ios
+            write(*,*) 'ic:       ', ic
+            write(*,*) 'nexp:     ', nexp
+            write(*,*) 'prec:     ', prec
+            write(*,*) 'var1:     ', var1
+        end if
+
+!        if ((kvar .eq. var) &
+!            .and. (iy .eq. yy) &
+!            .and. (im .eq. mm) &
+!            .and. (id .eq. dd) &
+!            .and. (ih .eq. hh) &
+!            .and. (il .eq. lvl)) exit
         if (ios .ne. 0) exit
     end do
 

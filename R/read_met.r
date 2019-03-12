@@ -12,6 +12,7 @@
 #' @param dd desired record day of month
 #' @param hh desired record hour of day
 #' @param lvl desired record vertical level (0:nz)
+#' @param verbose print record data during fortran variable search
 #' @param wnd_warning report grid orientation warning when querying wind data
 #'
 #' @return rasterLayer with associated projection metadata
@@ -20,7 +21,8 @@
 #'
 #' @export
 
-read_met <- function(path, var, yy, mm, dd, hh, lvl, wnd_warning = T) {
+read_met <- function(path, var, yy, mm, dd, hh, lvl, verbose = F,
+                     wnd_warning = T) {
 
   if (!file.exists(path)) stop('File does not exist')
   var <- toupper(var)
@@ -44,6 +46,7 @@ read_met <- function(path, var, yy, mm, dd, hh, lvl, wnd_warning = T) {
                   dd = as.integer(dd),
                   hh = as.integer(hh),
                   lvl = as.integer(lvl),
+                  verbose = as.integer(verbose),
                   rdata = array(0, dim = c(meta$nx, meta$ny)))
 
   raster::raster(apply(t(out$rdata), 2, rev),
