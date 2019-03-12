@@ -60,12 +60,12 @@ subroutine fetch_grid(path, var, nx, ny, yy, mm, dd, hh, lvl, verbose, rdata)
             write(*,*) 'var1:     ', var1
         end if
 
-!        if ((kvar .eq. var) &
-!            .and. (iy .eq. yy) &
-!            .and. (im .eq. mm) &
-!            .and. (id .eq. dd) &
-!            .and. (ih .eq. hh) &
-!            .and. (il .eq. lvl)) exit
+        if ((kvar .eq. var) &
+            .and. (iy .eq. yy) &
+            .and. (im .eq. mm) &
+            .and. (id .eq. dd) &
+            .and. (ih .eq. hh) &
+            .and. (il .eq. lvl)) exit
         if (ios .ne. 0) exit
     end do
 
