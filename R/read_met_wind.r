@@ -64,6 +64,6 @@ read_met_wind <- function(path, yy, mm, dd, hh, lvl, wnd_warning = T) {
   )
 
 
-  raster::stack(list(u = raster(uv[1, , ], template = u),
-             v = raster(uv[2, , ], template = v)))
+  raster::stack(list(u = raster::raster(uv[1, , ], template = u),
+                     v = raster::raster(uv[2, , ], template = v)))
 }
