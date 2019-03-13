@@ -1,9 +1,14 @@
 # stiltread R package
 
-This package provides tools for interfacing with input and output files used by the [Stochastic Time Inverted Lagrangian Transport (STILT)](http://uataq.github.io/stilt) model. 
-
+This package provides tools for interfacing with input and output files used by the [Stochastic Time Inverted Lagrangian Transport (STILT)](http://uataq.github.io/stilt) model.
 
 ## Installation
+
+If R is using the intel fortran compiler, additional compilation flags must be included. Run the following command to check if the `ifort` compiler is in use, and add `PKG_FCFLAGS = -assume byterecl` to `~/.R/Makevars` if necessary.
+
+```bash
+R CMD config FC | grep -q ifort && mkdir -p ~/.R && (echo "PKG_FCFLAGS = -assume byterecl" >> ~/.R/Makevars && echo "Modified compiler options at ~/.R/Makevars") || echo "No compiler modification necessary."
+```
 
 Package can be installed using `devtools`.
 
