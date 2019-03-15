@@ -49,7 +49,7 @@ read_met <- function(path, var, yy, mm, dd, hh, lvl, verbose = F,
                   verbose = as.integer(verbose),
                   rdata = array(0, dim = c(meta$nx, meta$ny)))
 
-  if (all(out$rdata) == 0) {
+  if (all(out$rdata == 0)) {
     stop('Requested time step or variable not found in ', path)
   }
 
