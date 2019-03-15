@@ -49,6 +49,10 @@ read_met <- function(path, var, yy, mm, dd, hh, lvl, verbose = F,
                   verbose = as.integer(verbose),
                   rdata = array(0, dim = c(meta$nx, meta$ny)))
 
+  if (all(out$rdata) == 0) {
+    stop('Requested time step or variable not found in ', path)
+  }
+
   raster::raster(apply(t(out$rdata), 2, rev),
                  crs = as.character(meta$crs),
                  xmn = meta$crs_domain[1],
