@@ -50,7 +50,8 @@ read_met <- function(path, var, yy, mm, dd, hh, lvl, verbose = F,
                   rdata = array(0, dim = c(meta$nx, meta$ny)))
 
   if (all(out$rdata == 0)) {
-    stop('Requested time step or variable not found in ', path)
+    warning('Requested time step or variable not found in ', path)
+    return(NULL)
   }
 
   raster::raster(apply(t(out$rdata), 2, rev),

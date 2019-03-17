@@ -35,6 +35,10 @@ read_met_wind <- function(path, yy, mm, dd, hh, lvl, wnd_warning = T) {
   u <- read_met(path, uvar, yy, mm, dd, hh, lvl, wnd_warning = F)
   v <- read_met(path, vvar, yy, mm, dd, hh, lvl, wnd_warning = F)
 
+  if (any(is.null(c(u[1], v[1])))) {
+    return(NULL)
+  }
+
   # Project winds onto latlon grid using bilinear interpolation
   u <- raster::projectRaster(u, crs = '+proj=longlat')
   v <- raster::projectRaster(v, crs = '+proj=longlat')
