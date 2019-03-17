@@ -45,8 +45,8 @@ read_met_header <- function(path) {
   # Use WRF python module to calculate ll of grid positions
   wrf <- reticulate::import('wrf', delay_load = T)
   latlon_domain <- wrf$xy_to_ll_proj(
-    x=c(1, output$nx),
-    y=c(1, output$ny),
+    x=c(0, output$nx - 1),
+    y=c(0, output$ny - 1),
     squeeze=T,
     meta=F,
     map_proj=as.integer(substring(header, 7, 7)),
