@@ -27,12 +27,6 @@ read_met <- function(path, var, yy, mm, dd, hh, lvl, verbose = F,
   if (!file.exists(path)) stop('File does not exist')
   var <- toupper(var)
 
-  if (wnd_warning && var %in% c('UWND', 'VWND', 'U10M', 'V10M')) {
-    warning(var, ' returned relative to native grid. See read_met_wind for ',
-            'U and V wind relative to North and East respectively or set ',
-            'wnd_warning = F to suppress this message.')
-  }
-
   meta <- stiltread::read_met_header(path)
 
   # Extract desired variable grid
@@ -52,6 +46,12 @@ read_met <- function(path, var, yy, mm, dd, hh, lvl, verbose = F,
   if (all(out$rdata == 0)) {
     warning('Requested time step or variable not found in ', path)
     return(NULL)
+  }
+
+  if (wnd_warning && var %in% c('UWND', 'VWND', 'U10M', 'V10M')) {
+    warning(var, ' returned relative to native grid. See read_met_wind for ',
+            'U and V wind relative to North and East respectively or set ',
+            'wnd_warning = F to suppress this message.')
   }
 
   raster::raster(apply(t(out$rdata), 2, rev),
