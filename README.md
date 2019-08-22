@@ -53,7 +53,7 @@ which returns a `raster::RasterLayer` containing data, grid coordinates, and pro
 
 Since wind is grid relative, use `read_met_wind` instead of `read_met` to access wind fields. This is called in the same way as `read_met`, only no `var` argument is required. This returns a `rasterStack` with `u` and `v` layers that have been rotated into `+proj=longlat`.
 
-```{r}
+```r
 library(stiltread)
 uv <- read_met_wind('/path/to/arl/20150617.00z.hrrra', 
                     yy = 15,
@@ -74,7 +74,7 @@ uv
 
 The `u` and `v` layers can be accessed by name using
 
-```{r}
+```r
 uv$u
 # class       : RasterLayer 
 # dimensions  : 72, 78, 5616  (nrow, ncol, ncell)
