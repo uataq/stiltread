@@ -7,7 +7,8 @@ This package provides tools for interfacing with input and output files used by 
 If R is using the intel fortran compiler, additional compilation flags must be included. Run the following command to check if the `ifort` compiler is in use, and add `PKG_FCFLAGS = -assume byterecl` to `~/.R/Makevars` if necessary.
 
 ```bash
-R CMD config FC | grep -q ifort && mkdir -p ~/.R && (echo "PKG_FCFLAGS = -assume byterecl" >> ~/.R/Makevars && echo "Modified compiler options at ~/.R/Makevars") || echo "No compiler modification necessary."
+R CMD config FC | grep -q ifort && mkdir -p ~/.R && (echo "PKG_FCFLAGS = -assume byterecl" >> ~/.R/Makevars && echo "Modified compiler options at ~/.R/Makevars")
+R CMD config FC | grep -q gfortran && mkdir -p ~/.R && (echo "PKG_FCFLAGS = -frecord-marker=8" >> ~/.R/Makevars && echo "Modified compiler options at ~/.R/Makevars")
 ```
 
 Package can be installed using `devtools`.
