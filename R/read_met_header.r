@@ -55,8 +55,8 @@ read_met_header <- function(path) {
     stand_lon=output$ref_lon,
     ref_lat=output$sync_lat,
     ref_lon=output$sync_lon,
-    known_x=0,
-    known_y=0,
+    known_x=output$sync_x,  # fortran 1 based index
+    known_y=output$sync_y,
     pole_lat=ifelse(output$pole_lat >= -999, output$pole_lat, 90),
     pole_lon=ifelse(output$pole_lon >= -999, output$pole_lon, 0),
     dx=output$ref_grid * 1000,
