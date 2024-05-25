@@ -17,6 +17,12 @@ Package can be installed using `devtools`.
 if (!require('devtools')) install.packages('devtools')
 devtools::install_github('uataq/stiltread')
 ```
+NOTE:  the `rgdal` package was removed from the CRAN repository as of October 2023.
+To install `rgdal` nonetheless, it can be installed from source:
+```r
+url <- "https://cran.r-project.org/src/contrib/Archive/rgdal/rgdal_1.6-7.tar.gz"
+install.packages(url, type="source", repos=NULL)
+```
 
 Then, load the package and install the dependencies.
 
