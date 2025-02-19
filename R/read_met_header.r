@@ -63,14 +63,13 @@ read_met_header <- function(path) {
     dy=output$ref_grid * 1000
   )
 
-  output$crs <- glue::glue('+proj=lcc ',
+  output$crs <- glue::glue_data(.x=output, '+proj=lcc ',
                            '+lon_0={ref_lon} ',
                            '+lat_0={cone_angle} ',
                            '+lat_1={cone_angle} ',
                            '+lat_2={cone_angle} ',
                            '+ellps=WGS84 ',
-                           '+no_defs ',
-                           .envir = output)
+                           '+no_defs ')
 
   crs_domain <- rgdal::rawTransform('+proj=longlat',
                                     output$crs,
